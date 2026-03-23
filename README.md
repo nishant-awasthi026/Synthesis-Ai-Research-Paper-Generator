@@ -6,11 +6,11 @@ An AI-powered research paper generation platform with RAG (Retrieval Augmented G
 
 ## ✨ Features
 
-- **RAG-Powered Research Discovery**: 2000+ papers across 50+ research niches
-- **AI Writing Assistance**: Local LLM (Ollama) for section generation
-- **Continuous Learning**: Daily automated ingestion of new research papers
-- **Citation Management**: Automatic citation generation (APA, IEEE, MLA, Chicago)
-- **Multi-Format Export**: PDF, DOCX, LaTeX
+- **Vectorless RAG (BM25 PageIndex)**: Exact fact retrieval across 2000+ papers
+- **Fine-Tuned AI Writing**: Local Qwen LLM integration for expert section generation
+- **Interactive Chat Flow**: Ideate topics and select base papers iteratively
+- **Live Editors**: Real-time dual-pane LaTeX and Google Colab ML Code editors
+- **Systematic Export**: One-click ZIP export containing code, papers, and formatted LaTeX
 - **Similarity Detection**: Check novelty of research ideas
 - **Zero Cloud Costs**: 100% local deployment
 
@@ -18,8 +18,8 @@ An AI-powered research paper generation platform with RAG (Retrieval Augmented G
 
 ```
 ├── Backend (FastAPI + Python)
-│   ├── RAG System (ChromaDB + sentence-transformers)
-│   ├── LLM Integration (Ollama)
+│   ├── Vectorless RAG System (BM25 PageIndex)
+│   ├── LLM Integration (Fine-tuned Qwen)
 │   ├── Multi-source ingestion (arXiv, Semantic Scholar, PubMed, CORE)
 │   └── RESTful API
 │
@@ -29,7 +29,7 @@ An AI-powered research paper generation platform with RAG (Retrieval Augmented G
 │   └── Real-time UI updates
 │
 └── Data
-    ├── ChromaDB (Vector store)
+    ├── vectorless_store.json (BM25 Index)
     ├── SQLite (Metadata)
     └── User uploads
 ```
@@ -44,15 +44,15 @@ An AI-powered research paper generation platform with RAG (Retrieval Augmented G
 
 ## 🚀 Quick Start
 
-### 1. Install Ollama & Pull Model
+### 1. Install Ollama & Pull Qwen Model
 
 ```bash
 # Download Ollama from https://ollama.ai
-# Then pull the model:
-ollama pull llama3.1:8b
+# Then pull the Qwen model for improved factuality:
+ollama pull qwen2.5:7b
 
-# Or for lower-end hardware:
-ollama pull mistral:7b
+# Or if you have more VRAM:
+ollama pull qwen2.5:14b
 ```
 
 ### 2. Clone & Setup Backend
@@ -135,9 +135,8 @@ python scripts\daily_ingest.py
 
 ### Backend
 - **FastAPI** - Web framework
-- **ChromaDB** - Vector database
-- **sentence-transformers** - Embeddings
-- **Ollama** - Local LLM
+- **rank_bm25** - Vectorless Search (PageIndex)
+- **Ollama** - Local LLM (Qwen)
 - **SQLite** - Metadata storage
 - **LangChain** - LLM orchestration
 
@@ -193,12 +192,11 @@ Edit `backend/config.py` to customize:
 
 ```python
 # LLM Configuration
-OLLAMA_MODEL = "llama3.1:8b"  # or "mistral:7b"
+OLLAMA_MODEL = "qwen2.5:7b"
 OLLAMA_BASE_URL = "http://localhost:11434"
 
 # Vector Database
-CHROMADB_PERSIST_DIR = "./data/chromadb"
-EMBEDDING_MODEL = "all-mpnet-base-v2"  # or "all-MiniLM-L6-v2"
+# Using Vectorless RAG (BM25) fallback storage
 
 # Ingestion
 DAILY_INGESTION_TIME = "02:00"
