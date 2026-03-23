@@ -6,7 +6,7 @@ An AI-powered research paper generation platform with RAG (Retrieval Augmented G
 
 ## ✨ Features
 
-- **Vectorless RAG (BM25 PageIndex)**: Exact fact retrieval across 2000+ papers
+- **Vectorless RAG (BM25 PageIndex)**: Exact fact retrieval across 50+ papers
 - **Fine-Tuned AI Writing**: Local Qwen LLM integration for expert section generation
 - **Interactive Chat Flow**: Ideate topics and select base papers iteratively
 - **Live Editors**: Real-time dual-pane LaTeX and Google Colab ML Code editors
