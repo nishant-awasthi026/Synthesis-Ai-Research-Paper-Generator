@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{hyperref}
+
+\title{ {{- title -}} }
+\author{ {{- author -}} }
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+{{- abstract -}}
+\end{abstract}
+
+\section*{Keywords}
+{% for keyword in keywords %}{{- keyword -}}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% if sections.introduction %}
+\section{Introduction}
+{{- sections.introduction -}}
+{% endif %}
+
+{% if sections.related_work %}
+\section{Related Work}
+{{- sections.related_work -}}
+{% endif %}
+
+{% if sections.methodology %}
+\section{Methodology}
+{{- sections.methodology -}}
+{% endif %}
+
+{% if sections.results %}
+\section{Results}
+{{- sections.results -}}
+{% endif %}
+
+{% if sections.discussion %}
+\section{Discussion}
+{{- sections.discussion -}}
+{% endif %}
+
+{% if sections.limitations %}
+\section{Limitations}
+{{- sections.limitations -}}
+{% endif %}
+
+{% if sections.conclusion %}
+\section{Conclusion}
+{{- sections.conclusion -}}
+{% endif %}
+
+{% if sections.future_work %}
+\section{Future Work}
+{{- sections.future_work -}}
+{% endif %}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
