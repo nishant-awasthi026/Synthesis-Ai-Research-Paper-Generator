@@ -8,10 +8,6 @@
 
 v1.0
 
-## Prepared For
-
-Antigravity AI
-
 ## Prepared By
 
 Nishant Awasthi
